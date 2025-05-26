@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Pie Chart -->
+  <path d="M200 300 L200 150 A150 150 0 0 1 332 225 Z" fill="#2196f3" opacity="0.9"/>
+  <path d="M200 300 L332 225 A150 150 0 0 1 332 375 Z" fill="#64b5f6" opacity="0.8"/>
+  <path d="M200 300 L332 375 A150 150 0 0 1 200 450 Z" fill="#90caf9" opacity="0.7"/>
+  <path d="M200 300 L200 450 A150 150 0 0 1 68 225 Z" fill="#bbdefb" opacity="0.6"/>
+  <path d="M200 300 L68 225 A150 150 0 0 1 200 150 Z" fill="#e3f2fd" opacity="0.5"/>
+  
+  <!-- Box Plot -->
+  <line x1="500" y1="150" x2="500" y2="450" stroke="#E0E0E0" stroke-width="2"/>
+  <rect x="450" y="200" width="100" height="60" fill="none" stroke="#2196f3" stroke-width="2"/>
+  <rect x="450" y="340" width="100" height="60" fill="none" stroke="#2196f3" stroke-width="2"/>
+  <line x1="500" y1="260" x2="500" y2="340" stroke="#2196f3" stroke-width="2"/>
+  <line x1="450" y1="300" x2="550" y2="300" stroke="#2196f3" stroke-width="2"/>
+  
+  <!-- Whiskers -->
+  <line x1="450" y1="150" x2="550" y2="150" stroke="#2196f3" stroke-width="2"/>
+  <line x1="450" y1="450" x2="550" y2="450" stroke="#2196f3" stroke-width="2"/>
+  
+  <!-- Data Points -->
+  <circle cx="500" cy="175" r="4" fill="#2196f3"/>
+  <circle cx="500" cy="425" r="4" fill="#2196f3"/>
+  <circle cx="500" cy="300" r="6" fill="#2196f3"/>
+  
+  <!-- Mini Charts -->
+  <circle cx="650" cy="200" r="30" fill="none" stroke="#2196f3" stroke-width="2"/>
+  <path d="M650 200 L650 170 A30 30 0 0 1 676 215 Z" fill="#2196f3" opacity="0.7"/>
+  
+  <circle cx="650" cy="300" r="30" fill="none" stroke="#2196f3" stroke-width="2"/>
+  <path d="M650 300 L650 270 A30 30 0 0 1 676 315 Z" fill="#64b5f6" opacity="0.7"/>
+  
+  <circle cx="650" cy="400" r="30" fill="none" stroke="#2196f3" stroke-width="2"/>
+  <path d="M650 400 L650 370 A30 30 0 1 1 624 415 Z" fill="#90caf9" opacity="0.7"/>
+</svg>
