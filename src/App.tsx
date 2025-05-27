@@ -23,7 +23,6 @@ function App() {
               minHeight: '100vh',
               position: 'relative',
               bgcolor: 'background.default',
-              overflow: 'hidden'
             }}
           >
             <Navbar />
@@ -32,14 +31,14 @@ function App() {
               sx={{ 
                 display: 'flex',
                 flexDirection: 'column',
-                flex: '1 0 auto',
+                flex: 1,
                 width: '100%',
                 pt: { xs: 8, sm: 9 }, // Add padding top to account for fixed navbar
-                zIndex: 1
+                position: 'relative'
               }}
             >
               <Routes>
-                <Route index element={<Home />} />
+                <Route path="" element={<Home />} />
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/projects" element={<Projects />} />
