@@ -80,16 +80,14 @@ const Footer = () => {
           >
             Let's Build Something Amazing Together
           </Typography>
-          
-          <Typography 
+            <Typography 
             variant="h6" 
-            color="text.secondary"
             sx={{ 
               maxWidth: '600px',
               mx: 'auto',
               lineHeight: 1.6,
               mb: 4,
-              opacity: 0.9
+              color: 'rgba(255, 255, 255, 0.9)'
             }}
           >
             Ready to transform your data into actionable insights? Let's discuss your next project.
@@ -128,12 +126,10 @@ const Footer = () => {
             </SocialLink>
           </Stack>
           
-          <Box sx={{ pt: 4, width: '100%', maxWidth: '800px' }}>
-            <Typography 
+          <Box sx={{ pt: 4, width: '100%', maxWidth: '800px' }}>            <Typography 
               variant="body2" 
-              color="text.secondary"
               sx={{ 
-                opacity: 0.8,
+                color: 'rgba(255, 255, 255, 0.7)',
                 borderTop: theme => `1px solid ${theme.palette.divider}`,
                 pt: 2
               }}
