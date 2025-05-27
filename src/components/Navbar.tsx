@@ -18,21 +18,22 @@ import { Link as RouterLink, useLocation } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
 import { styled } from '@mui/material/styles';
 
-const StyledAppBar = styled(AppBar)({
+const StyledAppBar = styled(AppBar)(({ theme }) => ({
   background: 'rgba(18, 18, 18, 0.8)',
   backdropFilter: 'blur(8px)',
   boxShadow: 'none',
   borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
   transition: 'all 0.3s ease-in-out',
+  zIndex: theme.zIndex.appBar,
   '&.scrolled': {
     background: 'rgba(18, 18, 18, 0.95)',
     boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)'
   }
-});
+}));
 
 interface NavButtonProps {
-  component: React.ElementType;
-  to: string;
+  component?: React.ElementType;
+  to?: string;
   className?: string;
   children?: React.ReactNode;
 }

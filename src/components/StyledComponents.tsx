@@ -1,6 +1,5 @@
 import { styled } from '@mui/material/styles';
-import { Card, Typography, Box, Paper, Grid as MuiGrid } from '@mui/material';
-import React from 'react';
+import { Card, Typography, Box, Grid as MuiGrid } from '@mui/material';
 
 export const GradientText = styled(Typography)(({ theme }) => ({
   background: `linear-gradient(45deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,

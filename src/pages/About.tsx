@@ -1,75 +1,106 @@
-import { Box, Container, Grid as MuiGrid, Typography } from '@mui/material';
+import { Box, Container, Typography } from '@mui/material';
 import { motion } from 'framer-motion';
 import { GradientText, SkillChip, StyledCard, SectionTitle } from '../components/StyledComponents';
+import { styled } from '@mui/material/styles';
+import profilePhoto from '../assets/profile-photo.png';
 
-const Grid = MuiGrid as any; // Temporary type assertion to fix Grid issues
+interface Experience {
+  title: string;
+  company: string;
+  period: string;
+  description: string[];
+}
+
+interface Education {
+  degree: string;
+  institution: string;
+  period: string;
+  highlights: string;
+}
+
+interface Certification {
+  title: string;
+  issuer: string;
+  year: string;
+}
+
+const StyledLink = styled('a')({
+  color: 'inherit',
+  textDecoration: 'none',
+  '&:hover': {
+    textDecoration: 'underline'
+  }
+});
 
 const About = () => {
   const skills = {
     technical: [
-      'Python', 'SQL', 'Excel', 'Vibe Coding',
+      'Python', 'SQL', 'Excel', 'Data Analysis',
       'Pandas', 'NumPy', 'Matplotlib', 'Seaborn',
-      'Predictive Modeling', 'Power BI', 'Data Visualization'
+      'Predictive Modeling', 'Power BI', 'Data Visualization',
+      'Statistical Analysis', 'Machine Learning', 'Data Mining'
     ]
   };
 
-  const experiences = [
+  const experiences: Experience[] = [
     {
-      title: 'Senior Data Analyst',
+      title: 'Data Analyst',
       company: 'Tech Solutions Inc.',
       period: '2023 - Present',
       description: [
-        'Led cross-functional team of 5 analysts, delivering insights that drove 30% improvement in operational efficiency',
-        'Implemented automated ML pipeline reducing customer churn by 25%',
-        'Developed real-time dashboard system monitoring KPIs for 100+ daily active users'
+        'Led data analysis projects using Python, SQL, and advanced visualization tools',
+        'Developed automated reporting systems reducing manual work by 40%',
+        'Created predictive models achieving 85% accuracy in business forecasting',
+        'Collaborated with cross-functional teams to deliver actionable insights'
       ]
     },
     {
-      title: 'Data Analyst',
+      title: 'Junior Data Analyst',
       company: 'Analytics Corp',
       period: '2021 - 2023',
       description: [
-        'Developed automated reporting systems saving 20 hours per week in manual work',
-        'Created predictive models achieving 85% accuracy in sales forecasting',
-        'Optimized marketing spend allocation resulting in 40% ROI improvement'
+        'Performed data cleaning and preprocessing using Python and SQL',
+        'Built interactive dashboards using Power BI for 100+ daily active users',
+        'Optimized database queries resulting in 30% faster report generation',
+        'Conducted A/B testing and statistical analysis for marketing campaigns'
       ]
     }
   ];
 
-  const education = [
+  const education: Education[] = [
     {
-      degree: 'Master of Science in Data Science',
-      institution: 'Tech University',
-      period: '2020 - 2021',
+      degree: 'Masters in Data Analytics',
+      institution: 'University of Ghana',
+      period: '2022 - 2024',
       highlights: 'Specialized in Machine Learning and Statistical Analysis'
     },
     {
       degree: 'Bachelor of Science in Computer Science',
-      institution: 'State University',
-      period: '2016 - 2020',
-      highlights: 'Graduated with Honors, Minor in Mathematics'
+      institution: 'Kwame Nkrumah University of Science and Technology',
+      period: '2018 - 2022',
+      highlights: 'First Class Honours, Minor in Mathematics'
     }
   ];
 
-  const certifications = [
+  const certifications: Certification[] = [
     {
-      title: 'AWS Certified Data Analytics Specialist',
-      issuer: 'Amazon Web Services',
+      title: 'Data Analysis Professional Certificate',
+      issuer: 'Google',
       year: '2023'
     },
     {
-      title: 'Google Professional Data Engineer',
-      issuer: 'Google Cloud',
-      year: '2022'
+      title: 'Data Science Specialization',
+      issuer: 'IBM',
+      year: '2023'
     },
     {
-      title: 'Microsoft Certified: Azure Data Scientist Associate',
+      title: 'Advanced SQL for Data Analytics',
       issuer: 'Microsoft',
       year: '2022'
     }
   ];
 
-  const container = {
+  const containerMotion = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
@@ -79,15 +110,14 @@ const About = () => {
     }
   };
 
-  const item = {
+  const itemMotion = {
     hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0 }
   };
 
   return (
-    <Box sx={{ py: 8 }}>
-      <Container>
-        {/* Hero Section */}
+    <Box component="section" sx={{ py: 8 }}>
+      <Container maxWidth="lg">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -103,7 +133,7 @@ const About = () => {
               <Box sx={{ flex: '0 0 auto', width: { xs: '100%', md: '40%' }, display: 'flex', justifyContent: 'center' }}>
                 <Box
                   component="img"
-                  src="/profile-photo.png"
+                  src={profilePhoto}
                   alt="Henry Kwakye"
                   sx={{
                     width: 300,
@@ -118,124 +148,133 @@ const About = () => {
               </Box>
               <Box sx={{ flex: '1 1 auto', width: { xs: '100%', md: '60%' } }}>
                 <Typography variant="h5" color="textSecondary" paragraph sx={{ mb: 3 }}>
-                  Passionate Data Professional with expertise in transforming complex data into actionable insights
+                  Data Analyst specializing in transforming complex data into clear, actionable insights
                 </Typography>
                 <Typography variant="body1" color="text.secondary">
-                  I specialize in leveraging Python, SQL, and advanced data visualization tools to uncover meaningful patterns and drive data-informed decisions. My approach combines technical expertise with clear communication to translate complex analyses into actionable business strategies.
+                  With a strong foundation in Python, SQL, and data visualization, I help organizations make data-driven decisions
+                  that drive business growth. My expertise includes statistical analysis, machine learning, and creating
+                  interactive dashboards that make complex data accessible and actionable.
                 </Typography>
+                <Box mt={2}>
+                  <Typography variant="body1" color="text.secondary">
+                    📧 <StyledLink href="mailto:iamkobinahenry@gmail.com">iamkobinahenry@gmail.com</StyledLink><br />
+                    📱 <StyledLink href="tel:+233548017688">+233 54 801 7688</StyledLink><br />
+                    🔗 <StyledLink href="https://www.linkedin.com/in/henrykwakye" target="_blank" rel="noopener noreferrer">
+                      linkedin.com/in/henrykwakye
+                    </StyledLink><br />
+                    🐙 <StyledLink href="https://github.com/Badkoby" target="_blank" rel="noopener noreferrer">
+                      github.com/Badkoby
+                    </StyledLink>
+                  </Typography>
+                </Box>
               </Box>
             </Box>
           </Box>
         </motion.div>
 
-        {/* Skills Section */}
         <Box sx={{ mb: 8 }}>
           <SectionTitle variant="h3" gutterBottom>
             Skills & Expertise
           </SectionTitle>
-          <Grid container spacing={4}>
-            <Grid component="div" item xs={12}>
-              <motion.div variants={item}>
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, justifyContent: 'center' }}>
+            {skills.technical.map((skill, index) => (
+              <SkillChip key={index}>{skill}</SkillChip>
+            ))}
+          </Box>
+        </Box>
+
+        <Box sx={{ mb: 8 }}>
+          <SectionTitle variant="h3" gutterBottom>
+            Professional Experience
+          </SectionTitle>
+          <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' }, gap: 4 }}>
+            {experiences.map((experience, index) => (
+              <motion.div
+                key={index}
+                variants={itemMotion}
+                initial="hidden"
+                animate="show"
+              >
                 <StyledCard>
-                  <Box>
-                    {skills.technical.map((skill) => (
-                      <SkillChip key={skill}>{skill}</SkillChip>
+                  <Typography variant="h6" gutterBottom color="primary">
+                    {experience.title}
+                  </Typography>
+                  <Typography variant="subtitle1" gutterBottom>
+                    {experience.company}
+                  </Typography>
+                  <Typography variant="body2" color="textSecondary" gutterBottom>
+                    {experience.period}
+                  </Typography>
+                  <Box component="ul" sx={{ m: 0, pl: 2 }}>
+                    {experience.description.map((desc, i) => (
+                      <Typography component="li" variant="body1" key={i} sx={{ mb: 1 }}>
+                        {desc}
+                      </Typography>
                     ))}
                   </Box>
                 </StyledCard>
               </motion.div>
-            </Grid>
-          </Grid>
+            ))}
+          </Box>
         </Box>
 
-        {/* Experience Section */}        <Box sx={{ mb: 8 }}>
-          <SectionTitle variant="h3" gutterBottom>
-            Professional Experience
-          </SectionTitle>
-          <motion.div variants={container} initial="hidden" animate="show">
-            <Grid container spacing={4}>
-              {experiences.map((experience, idx) => (
-                <Grid item xs={12} md={6} key={idx}>
-                  <motion.div variants={item}>
-                    <StyledCard>
-                      <Typography variant="h6" gutterBottom color="primary">
-                        {experience.title}
-                      </Typography>
-                      <Typography variant="subtitle1" gutterBottom>
-                        {experience.company}
-                      </Typography>
-                      <Typography variant="body2" color="textSecondary" gutterBottom>
-                        {experience.period}
-                      </Typography>
-                      <Box component="ul" sx={{ m: 0, pl: 2 }}>
-                        {experience.description.map((desc, i) => (
-                          <Typography component="li" variant="body1" key={i} sx={{ mb: 1 }}>
-                            {desc}
-                          </Typography>
-                        ))}
-                      </Box>
-                    </StyledCard>
-                  </motion.div>
-                </Grid>
-              ))}
-            </Grid>
-          </motion.div>
-        </Box>
-
-        {/* Education Section */}        <Box sx={{ mb: 8 }}>
+        <Box sx={{ mb: 8 }}>
           <SectionTitle variant="h3" gutterBottom>
             Education
           </SectionTitle>
-          <motion.div variants={container} initial="hidden" animate="show">
-            <Grid container spacing={4}>
-              {education.map((edu, idx) => (
-                <Grid item xs={12} md={6} key={idx}>
-                  <motion.div variants={item}>
-                    <StyledCard>
-                      <Typography variant="h6" gutterBottom color="primary">
-                        {edu.degree}
-                      </Typography>
-                      <Typography variant="subtitle1" gutterBottom>
-                        {edu.institution}
-                      </Typography>
-                      <Typography variant="body2" color="textSecondary" gutterBottom>
-                        {edu.period}
-                      </Typography>
-                      <Typography variant="body1">
-                        {edu.highlights}
-                      </Typography>
-                    </StyledCard>
-                  </motion.div>
-                </Grid>
-              ))}
-            </Grid>
-          </motion.div>
+          <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' }, gap: 4 }}>
+            {education.map((edu, index) => (
+              <motion.div
+                key={index}
+                variants={itemMotion}
+                initial="hidden"
+                animate="show"
+              >
+                <StyledCard>
+                  <Typography variant="h6" gutterBottom color="primary">
+                    {edu.degree}
+                  </Typography>
+                  <Typography variant="subtitle1" gutterBottom>
+                    {edu.institution}
+                  </Typography>
+                  <Typography variant="body2" color="textSecondary" gutterBottom>
+                    {edu.period}
+                  </Typography>
+                  <Typography variant="body1">
+                    {edu.highlights}
+                  </Typography>
+                </StyledCard>
+              </motion.div>
+            ))}
+          </Box>
         </Box>
 
-        {/* Certifications Section */}        <Box>
+        <Box>
           <SectionTitle variant="h3" gutterBottom>
             Certifications
           </SectionTitle>
-          <motion.div variants={container} initial="hidden" animate="show">
-            <Grid container spacing={4}>
-              {certifications.map((cert, idx) => (
-                <Grid item xs={12} md={4} key={idx}>
-                  <motion.div variants={item}>
-                    <StyledCard>                      <Typography variant="h6" gutterBottom>
-                        {cert.title}
-                      </Typography>
-                      <Typography variant="subtitle1" gutterBottom>
-                        {cert.issuer}
-                      </Typography>
-                      <Typography variant="body2" color="textSecondary">
-                        {cert.year}
-                      </Typography>
-                    </StyledCard>
-                  </motion.div>
-                </Grid>
-              ))}
-            </Grid>
-          </motion.div>
+          <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(3, 1fr)' }, gap: 4 }}>
+            {certifications.map((cert, index) => (
+              <motion.div
+                key={index}
+                variants={itemMotion}
+                initial="hidden"
+                animate="show"
+              >
+                <StyledCard>
+                  <Typography variant="h6" gutterBottom>
+                    {cert.title}
+                  </Typography>
+                  <Typography variant="subtitle1" gutterBottom>
+                    {cert.issuer}
+                  </Typography>
+                  <Typography variant="body2" color="textSecondary">
+                    {cert.year}
+                  </Typography>
+                </StyledCard>
+              </motion.div>
+            ))}
+          </Box>
         </Box>
       </Container>
     </Box>

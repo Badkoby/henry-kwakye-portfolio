@@ -24,10 +24,12 @@ const PageContainer: React.FC<PageContainerProps> = ({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
       sx={{
-        py: spacing,
-        minHeight: '100vh',
+        pt: spacing,
+        pb: spacing * 2, // Double bottom padding to ensure space for footer
+        flex: 1,
         display: 'flex',
-        flexDirection: 'column'
+        flexDirection: 'column',
+        position: 'relative'
       }}
     >
       <Container maxWidth={maxWidth}>
@@ -50,7 +52,7 @@ const PageContainer: React.FC<PageContainerProps> = ({
             {title}
           </Typography>
         )}
-        {children}
+        <Box sx={{ flexGrow: 1 }}>{children}</Box>
       </Container>
     </Box>
   );

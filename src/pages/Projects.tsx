@@ -1,8 +1,10 @@
-import { Container, Typography, Grid, Card, CardContent, CardMedia, CardActions, Button, Box } from '@mui/material';
+import { Typography, Card, CardContent, CardMedia, CardActions, Button, Box } from '@mui/material';
+import { Grid } from '../components/StyledComponents';
 import { styled } from '@mui/material/styles';
 import { useProjects } from '../context/ProjectsContext';
+import PageContainer from '../components/PageContainer';
 
-const ProjectCard = styled(Card)(({ theme }) => ({
+const ProjectCard = styled(Card)(() => ({
   height: '100%',
   display: 'flex',
   flexDirection: 'column',
@@ -16,24 +18,22 @@ const Projects = () => {
   const { projects } = useProjects();
   
   return (
-    <Container sx={{ py: 8 }}>
-      <Typography variant="h3" gutterBottom>
-        Projects
-      </Typography>
+    <PageContainer title="Projects">
       <Typography variant="h6" color="text.secondary" paragraph>
         Showcasing my data analysis and visualization projects
       </Typography>
       
       <Grid container spacing={4}>
         {projects.map((project, index) => (
-          <Grid item key={index} xs={12} sm={6} md={4}>
+          <Grid item xs={12} sm={6} md={4} key={index}>
             <ProjectCard elevation={3}>
               <CardMedia
                 component="img"
                 height="200"
                 image={project.image}
                 alt={project.title}
-              />              <CardContent sx={{ flexGrow: 1 }}>
+              />
+              <CardContent sx={{ flexGrow: 1 }}>
                 <Typography gutterBottom variant="h5" component="h2">
                   {project.title}
                 </Typography>
@@ -41,7 +41,6 @@ const Projects = () => {
                   {project.description}
                 </Typography>
                 
-                {/* Business Impact Metrics */}
                 <Box sx={{ mt: 2, mb: 2 }}>
                   <Grid container spacing={1}>
                     {project.businessImpact.revenue && (
@@ -75,7 +74,6 @@ const Projects = () => {
                   </Grid>
                 </Box>
 
-                {/* Tools */}
                 <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
                   {project.tools.map((tool) => (
                     <Typography
@@ -95,7 +93,7 @@ const Projects = () => {
                 </Box>
               </CardContent>
               <CardActions>
-                <Button size="small" color="primary" href={project.link}>
+                <Button size="small" color="primary" href={project.link} target="_blank" rel="noopener noreferrer">
                   View Details
                 </Button>
               </CardActions>
@@ -103,7 +101,7 @@ const Projects = () => {
           </Grid>
         ))}
       </Grid>
-    </Container>
+    </PageContainer>
   );
 };
 

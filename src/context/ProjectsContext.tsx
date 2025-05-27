@@ -1,4 +1,5 @@
-import React, { createContext, useContext, ReactNode } from 'react';
+import type { ReactNode } from 'react';
+import React, { createContext, useContext } from 'react';
 
 interface BusinessImpact {
   revenue?: number;          // Additional revenue generated

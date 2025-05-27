@@ -1,5 +1,7 @@
 import React from 'react';
-import { Box, Container, Grid, Typography, Button } from '@mui/material';
+import cleanAnalyticsIllustration from '../assets/clean-analytics-illustration.svg';
+import dataStatisticsIllustration from '../assets/data-statistics-illustration.svg';
+import { Box, Container, Typography, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 import type { Theme } from '@mui/material';
 import type { SxProps } from '@mui/system';
@@ -27,7 +29,7 @@ const illustrationStyles: SxProps<Theme> = {
 };
 
 const Home: React.FC = () => {
-  const { projects, totalRevenue, totalCostSaving, averageEfficiency, averageROI, avgCustomerSatisfaction } = useProjects();
+  const { totalRevenue, totalCostSaving, averageEfficiency, averageROI, avgCustomerSatisfaction } = useProjects();
   
   // Format currency (e.g., $150,000)
   const formatCurrency = (num: number) => {
@@ -75,7 +77,13 @@ const Home: React.FC = () => {
   ];
 
   return (
-    <Box>      <HeroSection sx={{
+    <Box sx={{ 
+      display: 'flex',
+      flexDirection: 'column',
+      minHeight: '100%',
+      pb: 8 // Add padding at the bottom to prevent content from touching footer
+    }}>
+      <HeroSection sx={{
         position: 'relative',
         '&::before': {
           content: '""',
@@ -279,7 +287,8 @@ const Home: React.FC = () => {
                     }}
                   >
                     <Box
-                      component="img"                      src="/clean-analytics-illustration.svg"
+                      component="img"
+                      src={cleanAnalyticsIllustration}
                       alt="Data Analytics Visualization"
                       sx={illustrationStyles}
                     />
@@ -313,7 +322,8 @@ const Home: React.FC = () => {
                     }}
                   >
                     <Box
-                      component="img"                      src="/data-statistics-illustration.svg"
+                      component="img"
+                      src={dataStatisticsIllustration}
                       alt="Statistical Analysis and Insights"
                       sx={illustrationStyles}
                     />
