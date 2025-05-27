@@ -83,12 +83,11 @@ const Navbar: React.FC = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const location = useLocation();
-
   const isActive = (path: string) => {
     if (path === '/') {
-      return location.pathname === path;
+      return location.pathname === path || location.pathname === '';
     }
-    return location.pathname.startsWith(path);
+    return location.pathname === path;
   };
 
   useEffect(() => {
@@ -98,13 +97,11 @@ const Navbar: React.FC = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
   const navItems = [
     { label: 'Home', path: '/' },
-    { label: 'About', path: '/about' },
-    { label: 'Projects', path: '/projects' },
-    { label: 'Blog', path: '/blog' },
-    { label: 'Contact', path: '/contact' }
+    { label: 'About', path: 'about' },
+    { label: 'Projects', path: 'projects' },
+    { label: 'Contact', path: 'contact' }
   ];
 
   const handleDrawerToggle = () => {
