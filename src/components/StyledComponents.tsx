@@ -15,11 +15,10 @@ export const StyledCard = styled(Card)(({ theme }) => ({
   padding: theme.spacing(3),
   height: '100%',
   display: 'flex',
-  flexDirection: 'column',
-  transition: 'all 0.3s ease-in-out',
+  flexDirection: 'column',  transition: 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
   '&:hover': {
     transform: 'translateY(-8px)',
-    boxShadow: '0 12px 24px rgba(0,0,0,0.1)'
+    boxShadow: '0 16px 32px rgba(0,0,0,0.15)'
   }
 }));
 

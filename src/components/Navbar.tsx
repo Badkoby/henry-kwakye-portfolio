@@ -22,12 +22,11 @@ const StyledAppBar = styled(AppBar)(({ theme }) => ({
   background: 'rgba(18, 18, 18, 0.8)',
   backdropFilter: 'blur(8px)',
   boxShadow: 'none',
-  borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
-  transition: 'all 0.3s ease-in-out',
+  borderBottom: '1px solid rgba(255, 255, 255, 0.1)',  transition: 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)',
   zIndex: theme.zIndex.appBar,
   '&.scrolled': {
     background: 'rgba(18, 18, 18, 0.95)',
-    boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)'
+    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)'
   }
 }));
 

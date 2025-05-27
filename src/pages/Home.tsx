@@ -12,6 +12,43 @@ import AutoGraphIcon from '@mui/icons-material/AutoGraph';
 import SentimentVerySatisfiedIcon from '@mui/icons-material/SentimentVerySatisfied';
 import { useProjects } from '../context/ProjectsContext';
 
+// Animation configurations
+const containerAnimation = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      duration: 0.6,
+      ease: [0.4, 0, 0.2, 1]
+    }
+  }
+};
+
+const itemAnimation = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.8,
+      ease: [0.4, 0, 0.2, 1]
+    }
+  }
+};
+
+const scaleAnimation = {
+  hidden: { scale: 0.95, opacity: 0 },
+  visible: {
+    scale: 1,
+    opacity: 1,
+    transition: {
+      duration: 0.8,
+      ease: [0.4, 0, 0.2, 1]
+    }
+  }
+};
+
 interface StatData {
   icon: React.ReactNode;
   number: string;

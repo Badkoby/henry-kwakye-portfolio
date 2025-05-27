@@ -4,6 +4,49 @@ import { GradientText, SkillChip, StyledCard, SectionTitle } from '../components
 import { styled } from '@mui/material/styles';
 import profilePhoto from '../assets/profile-photo.png';
 
+const pageTransition = {
+  initial: { opacity: 0, y: 20 },
+  animate: { 
+    opacity: 1, 
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: [0.4, 0, 0.2, 1]
+    }
+  },
+  exit: { 
+    opacity: 0,
+    y: -20,
+    transition: {
+      duration: 0.6,
+      ease: [0.4, 0, 0.2, 1]
+    }
+  }
+};
+
+const staggerContainer = {
+  initial: { opacity: 0 },
+  animate: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.3
+    }
+  }
+};
+
+const itemVariant = {
+  initial: { opacity: 0, y: 20 },
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: [0.4, 0, 0.2, 1]
+    }
+  }
+};
+
 interface Experience {
   title: string;
   company: string;
@@ -114,168 +157,183 @@ const About = () => {
   };
 
   return (
-    <Box component="section" sx={{ py: 8 }}>
-      <Container maxWidth="lg">
-        <motion.div
-          variants={containerMotion}
-          initial="hidden"
-          animate="show"
-        >
-          <Box mb={8}>
-            <Box textAlign="center" mb={6}>
-              <GradientText variant="h2" gutterBottom>
-                About Me
-              </GradientText>
-            </Box>
-            <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: 4, alignItems: 'center' }}>
-              <Box sx={{ flex: '0 0 auto', width: { xs: '100%', md: '40%' }, display: 'flex', justifyContent: 'center' }}>
-                <Box
-                  component="img"
-                  src={profilePhoto}
-                  alt="Henry Kwakye"
-                  sx={{
-                    width: 300,
-                    height: 300,
-                    borderRadius: '50%',
-                    objectFit: 'cover',
-                    border: '4px solid',
-                    borderColor: 'primary.main',
-                    boxShadow: 3
-                  }}
-                />
+    <motion.div
+      variants={pageTransition}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+    >
+      <Box component="section" sx={{ py: 8 }}>
+        <Container maxWidth="lg">
+          <motion.div variants={staggerContainer} initial="initial" animate="animate">
+            <Box mb={8}>
+              <Box textAlign="center" mb={6}>
+                <motion.div variants={itemVariant}>
+                  <GradientText variant="h2" gutterBottom>
+                    About Me
+                  </GradientText>
+                </motion.div>
               </Box>
-              <Box sx={{ flex: '1 1 auto', width: { xs: '100%', md: '60%' } }}>
-                <Typography variant="h5" color="textSecondary" paragraph sx={{ mb: 3 }}>
-                  Data Analyst specializing in transforming complex data into clear, actionable insights
-                </Typography>
-                <Typography variant="body1" color="text.secondary">
-                  With a strong foundation in Python, SQL, and data visualization, I help organizations make data-driven decisions
-                  that drive business growth. My expertise includes statistical analysis, machine learning, and creating
-                  interactive dashboards that make complex data accessible and actionable.
-                </Typography>
-                <Box mt={2}>
+              
+              <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: 4, alignItems: 'center' }}>
+                <motion.div 
+                  variants={itemVariant}
+                  style={{ flex: '0 0 auto', width: { xs: '100%', md: '40%' }, display: 'flex', justifyContent: 'center' }}
+                >
+                  <Box
+                    component="img"
+                    src={profilePhoto}
+                    alt="Henry Kwakye"
+                    sx={{
+                      width: 300,
+                      height: 300,
+                      borderRadius: '50%',
+                      objectFit: 'cover',
+                      border: '4px solid',
+                      borderColor: 'primary.main',
+                      boxShadow: 3,
+                      transition: 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.6s cubic-bezier(0.4, 0, 0.2, 1)',
+                      '&:hover': {
+                        transform: 'scale(1.02)',
+                        boxShadow: '0 20px 40px rgba(0,0,0,0.2)'
+                      }
+                    }}
+                  />
+                </motion.div>
+                
+                <motion.div variants={itemVariant} style={{ flex: '1 1 auto', width: { xs: '100%', md: '60%' } }}>
+                  <Typography variant="h5" color="textSecondary" paragraph sx={{ mb: 3 }}>
+                    Data Analyst specializing in transforming complex data into clear, actionable insights
+                  </Typography>
                   <Typography variant="body1" color="text.secondary">
-                    📧 <StyledLink href="mailto:iamkobinahenry@gmail.com">iamkobinahenry@gmail.com</StyledLink><br />
-                    📱 <StyledLink href="tel:+233548017688">+233 54 801 7688</StyledLink><br />
-                    🔗 <StyledLink href="https://www.linkedin.com/in/henrykwakye" target="_blank" rel="noopener noreferrer">
-                      linkedin.com/in/henrykwakye
-                    </StyledLink><br />
-                    🐙 <StyledLink href="https://github.com/Badkoby" target="_blank" rel="noopener noreferrer">
-                      github.com/Badkoby
-                    </StyledLink>
+                    With a strong foundation in Python, SQL, and data visualization, I help organizations make data-driven decisions
+                    that drive business growth. My expertise includes statistical analysis, machine learning, and creating
+                    interactive dashboards that make complex data accessible and actionable.
                   </Typography>
-                </Box>
+                  <Box mt={2}>
+                    <Typography variant="body1" color="text.secondary">
+                      📧 <StyledLink href="mailto:iamkobinahenry@gmail.com">iamkobinahenry@gmail.com</StyledLink><br />
+                      📱 <StyledLink href="tel:+233548017688">+233 54 801 7688</StyledLink><br />
+                      🔗 <StyledLink href="https://www.linkedin.com/in/henrykwakye" target="_blank" rel="noopener noreferrer">
+                        linkedin.com/in/henrykwakye
+                      </StyledLink><br />
+                      🐙 <StyledLink href="https://github.com/Badkoby" target="_blank" rel="noopener noreferrer">
+                        github.com/Badkoby
+                      </StyledLink>
+                    </Typography>
+                  </Box>
+                </motion.div>
               </Box>
             </Box>
-          </Box>
-        </motion.div>
+          </motion.div>
 
-        <Box sx={{ mb: 8 }}>
-          <SectionTitle variant="h3" gutterBottom>
-            Skills & Expertise
-          </SectionTitle>
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, justifyContent: 'center' }}>
-            {skills.technical.map((skill, index) => (
-              <SkillChip key={index}>{skill}</SkillChip>
-            ))}
+          <Box sx={{ mb: 8 }}>
+            <SectionTitle variant="h3" gutterBottom>
+              Skills & Expertise
+            </SectionTitle>
+            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, justifyContent: 'center' }}>
+              {skills.technical.map((skill, index) => (
+                <SkillChip key={index}>{skill}</SkillChip>
+              ))}
+            </Box>
           </Box>
-        </Box>
 
-        <Box sx={{ mb: 8 }}>
-          <SectionTitle variant="h3" gutterBottom>
-            Professional Experience
-          </SectionTitle>
-          <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' }, gap: 4 }}>
-            {experiences.map((experience, index) => (
-              <motion.div
-                key={index}
-                variants={itemMotion}
-                initial="hidden"
-                animate="show"
-              >
-                <StyledCard>
-                  <Typography variant="h6" gutterBottom color="primary">
-                    {experience.title}
-                  </Typography>
-                  <Typography variant="subtitle1" gutterBottom>
-                    {experience.company}
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary" gutterBottom>
-                    {experience.period}
-                  </Typography>
-                  <Box component="ul" sx={{ m: 0, pl: 2 }}>
-                    {experience.description.map((desc, i) => (
-                      <Typography component="li" variant="body1" key={i} sx={{ mb: 1 }}>
-                        {desc}
-                      </Typography>
-                    ))}
-                  </Box>
-                </StyledCard>
-              </motion.div>
-            ))}
+          <Box sx={{ mb: 8 }}>
+            <SectionTitle variant="h3" gutterBottom>
+              Professional Experience
+            </SectionTitle>
+            <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' }, gap: 4 }}>
+              {experiences.map((experience, index) => (
+                <motion.div
+                  key={index}
+                  variants={itemMotion}
+                  initial="hidden"
+                  animate="show"
+                >
+                  <StyledCard>
+                    <Typography variant="h6" gutterBottom color="primary">
+                      {experience.title}
+                    </Typography>
+                    <Typography variant="subtitle1" gutterBottom>
+                      {experience.company}
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary" gutterBottom>
+                      {experience.period}
+                    </Typography>
+                    <Box component="ul" sx={{ m: 0, pl: 2 }}>
+                      {experience.description.map((desc, i) => (
+                        <Typography component="li" variant="body1" key={i} sx={{ mb: 1 }}>
+                          {desc}
+                        </Typography>
+                      ))}
+                    </Box>
+                  </StyledCard>
+                </motion.div>
+              ))}
+            </Box>
           </Box>
-        </Box>
 
-        <Box sx={{ mb: 8 }}>
-          <SectionTitle variant="h3" gutterBottom>
-            Education
-          </SectionTitle>
-          <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' }, gap: 4 }}>
-            {education.map((edu, index) => (
-              <motion.div
-                key={index}
-                variants={itemMotion}
-                initial="hidden"
-                animate="show"
-              >
-                <StyledCard>
-                  <Typography variant="h6" gutterBottom color="primary">
-                    {edu.degree}
-                  </Typography>
-                  <Typography variant="subtitle1" gutterBottom>
-                    {edu.institution}
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary" gutterBottom>
-                    {edu.period}
-                  </Typography>
-                  <Typography variant="body1">
-                    {edu.highlights}
-                  </Typography>
-                </StyledCard>
-              </motion.div>
-            ))}
+          <Box sx={{ mb: 8 }}>
+            <SectionTitle variant="h3" gutterBottom>
+              Education
+            </SectionTitle>
+            <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' }, gap: 4 }}>
+              {education.map((edu, index) => (
+                <motion.div
+                  key={index}
+                  variants={itemMotion}
+                  initial="hidden"
+                  animate="show"
+                >
+                  <StyledCard>
+                    <Typography variant="h6" gutterBottom color="primary">
+                      {edu.degree}
+                    </Typography>
+                    <Typography variant="subtitle1" gutterBottom>
+                      {edu.institution}
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary" gutterBottom>
+                      {edu.period}
+                    </Typography>
+                    <Typography variant="body1">
+                      {edu.highlights}
+                    </Typography>
+                  </StyledCard>
+                </motion.div>
+              ))}
+            </Box>
           </Box>
-        </Box>
 
-        <Box>
-          <SectionTitle variant="h3" gutterBottom>
-            Certifications
-          </SectionTitle>
-          <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(3, 1fr)' }, gap: 4 }}>
-            {certifications.map((cert, index) => (
-              <motion.div
-                key={index}
-                variants={itemMotion}
-                initial="hidden"
-                animate="show"
-              >
-                <StyledCard>
-                  <Typography variant="h6" gutterBottom>
-                    {cert.title}
-                  </Typography>
-                  <Typography variant="subtitle1" gutterBottom>
-                    {cert.issuer}
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary">
-                    {cert.year}
-                  </Typography>
-                </StyledCard>
-              </motion.div>
-            ))}
+          <Box>
+            <SectionTitle variant="h3" gutterBottom>
+              Certifications
+            </SectionTitle>
+            <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(3, 1fr)' }, gap: 4 }}>
+              {certifications.map((cert, index) => (
+                <motion.div
+                  key={index}
+                  variants={itemMotion}
+                  initial="hidden"
+                  animate="show"
+                >
+                  <StyledCard>
+                    <Typography variant="h6" gutterBottom>
+                      {cert.title}
+                    </Typography>
+                    <Typography variant="subtitle1" gutterBottom>
+                      {cert.issuer}
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary">
+                      {cert.year}
+                    </Typography>
+                  </StyledCard>
+                </motion.div>
+              ))}
+            </Box>
           </Box>
-        </Box>
-      </Container>
-    </Box>
+        </Container>
+      </Box>
+    </motion.div>
   );
 };
 
