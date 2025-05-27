@@ -98,9 +98,7 @@ const About = () => {
       issuer: 'Microsoft',
       year: '2022'
     }
-  ];
-
-  const containerMotion = {
+  ];  const containerMotion = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
@@ -119,9 +117,9 @@ const About = () => {
     <Box component="section" sx={{ py: 8 }}>
       <Container maxWidth="lg">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          variants={containerMotion}
+          initial="hidden"
+          animate="show"
         >
           <Box mb={8}>
             <Box textAlign="center" mb={6}>
