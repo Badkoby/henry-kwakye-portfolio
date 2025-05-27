@@ -1,20 +1,22 @@
 import { Box, Container, Typography } from '@mui/material';
 import { motion } from 'framer-motion';
-import { GradientText, SkillChip, StyledCard, SectionTitle } from '../components/StyledComponents';
 import { styled } from '@mui/material/styles';
+import { GradientText, SkillChip, StyledCard } from '../components/StyledComponents';
 import profilePhoto from '../assets/profile-photo.png';
 
-const pageTransition = {
+// Animation variants
+const pageVariants = {
   initial: { opacity: 0, y: 20 },
-  animate: { 
-    opacity: 1, 
+  animate: {
+    opacity: 1,
     y: 0,
     transition: {
       duration: 0.8,
-      ease: [0.4, 0, 0.2, 1]
+      ease: [0.4, 0, 0.2, 1],
+      staggerChildren: 0.2
     }
   },
-  exit: { 
+  exit: {
     opacity: 0,
     y: -20,
     transition: {
@@ -24,18 +26,7 @@ const pageTransition = {
   }
 };
 
-const staggerContainer = {
-  initial: { opacity: 0 },
-  animate: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-      delayChildren: 0.3
-    }
-  }
-};
-
-const itemVariant = {
+const itemVariants = {
   initial: { opacity: 0, y: 20 },
   animate: {
     opacity: 1,
@@ -141,44 +132,32 @@ const About = () => {
       issuer: 'Microsoft',
       year: '2022'
     }
-  ];  const containerMotion = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
-  };
-
-  const itemMotion = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0 }
-  };
+  ];
 
   return (
     <motion.div
-      variants={pageTransition}
+      variants={pageVariants}
       initial="initial"
       animate="animate"
       exit="exit"
     >
       <Box component="section" sx={{ py: 8 }}>
         <Container maxWidth="lg">
-          <motion.div variants={staggerContainer} initial="initial" animate="animate">
-            <Box mb={8}>
-              <Box textAlign="center" mb={6}>
-                <motion.div variants={itemVariant}>
-                  <GradientText variant="h2" gutterBottom>
-                    About Me
-                  </GradientText>
-                </motion.div>
-              </Box>
-              
-              <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: 4, alignItems: 'center' }}>
-                <motion.div 
-                  variants={itemVariant}
-                  style={{ flex: '0 0 auto', width: { xs: '100%', md: '40%' }, display: 'flex', justifyContent: 'center' }}
+          <Box mb={8}>
+            <Box textAlign="center" mb={6}>
+              <motion.div variants={itemVariants}>
+                <GradientText variant="h2" gutterBottom>
+                  About Me
+                </GradientText>
+              </motion.div>
+            </Box>
+            
+            <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: 4, alignItems: 'center' }}>
+              <Box sx={{ flex: '0 0 auto', width: { xs: '100%', md: '40%' }, display: 'flex', justifyContent: 'center' }}>
+                <motion.div
+                  variants={itemVariants}
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
                 >
                   <Box
                     component="img"
@@ -191,17 +170,16 @@ const About = () => {
                       objectFit: 'cover',
                       border: '4px solid',
                       borderColor: 'primary.main',
-                      boxShadow: 3,
-                      transition: 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.6s cubic-bezier(0.4, 0, 0.2, 1)',
-                      '&:hover': {
-                        transform: 'scale(1.02)',
-                        boxShadow: '0 20px 40px rgba(0,0,0,0.2)'
-                      }
+                      boxShadow: theme => `0 20px 40px ${theme.palette.mode === 'dark' ? 'rgba(0,0,0,0.3)' : 'rgba(0,0,0,0.1)'}`,
+                      transition: 'box-shadow 0.6s cubic-bezier(0.4, 0, 0.2, 1)'
                     }}
                   />
                 </motion.div>
-                
-                <motion.div variants={itemVariant} style={{ flex: '1 1 auto', width: { xs: '100%', md: '60%' } }}>
+              </Box>
+
+              <Box sx={{ flex: '1 1 auto', width: { xs: '100%', md: '60%' } }}>
+                {/* Content sections will be animated with itemVariants */}
+                <motion.div variants={itemVariants}>
                   <Typography variant="h5" color="textSecondary" paragraph sx={{ mb: 3 }}>
                     Data Analyst specializing in transforming complex data into clear, actionable insights
                   </Typography>
@@ -225,7 +203,7 @@ const About = () => {
                 </motion.div>
               </Box>
             </Box>
-          </motion.div>
+          </Box>
 
           <Box sx={{ mb: 8 }}>
             <SectionTitle variant="h3" gutterBottom>
